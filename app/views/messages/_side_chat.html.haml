@@ -1,0 +1,19 @@
+.chat-side
+  .header
+    .header__box
+      %p.header__box__username
+        ユーザー名
+      %ul.header__box__menu
+        %li.edit-user
+          =link_to "#" do
+            =icon('fas', 'edit')
+        %li.new-group
+          =link_to "#" do
+            =icon('fas', 'cog')
+  
+  .groups
+    =link_to "#", class:"group" do
+      %p.group__group-name
+        techcamp
+      %p.group__latest-message
+        まだメッセージがありません
