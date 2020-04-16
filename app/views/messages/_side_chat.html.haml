@@ -2,14 +2,14 @@
   .header
     .header__box
       %p.header__box__username
-        ユーザー名
+        = current_user.name
       %ul.header__box__menu
         %li.edit-user
           =link_to "#" do
             =icon('fas', 'edit')
         %li.new-group
-          =link_to "#" do
-            =icon('fas', 'cog')
+          =link_to "edit_user_path(current_user)" do
+            =icon('fas', 'cog', class: 'icon')
   
   .groups
     =link_to "#", class:"group" do
