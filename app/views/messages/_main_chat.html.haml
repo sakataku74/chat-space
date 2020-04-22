@@ -2,14 +2,16 @@
   .main-header
     .main-header__leftbox
       %p.main-header__leftbox__current-group
-        グループ名
+        = @group.name
         %ul.main-header__leftbox__member-list
-          Member :
+          Member : 
           %li.main-header__leftbox__member-list__member
-            name
+            - @group.users.each do |user|
+              = user.name
       
     .main-header__edit-btn
-      %a(href="#")Edit
+      = link_to edit_group_path(@group) do
+        Edit
   
   .messages
     =render @messages
@@ -23,9 +25,7 @@
           = f.file_field :image, class: 'input-box__image'
       = f.submit 'Send', class: 'form__submit'
 
-      
 
 
 
-  
-  
+
