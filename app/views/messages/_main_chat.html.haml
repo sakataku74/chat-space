@@ -2,52 +2,30 @@
   .main-header
     .main-header__leftbox
       %p.main-header__leftbox__current-group
-        グループ名
+        = @group.name
         %ul.main-header__leftbox__member-list
-          Member :
+          Member : 
           %li.main-header__leftbox__member-list__member
-            name
+            - @group.users.each do |user|
+              = user.name
       
     .main-header__edit-btn
-      %a(href="#")Edit
+      = link_to edit_group_path(@group) do
+        Edit
   
   .messages
-    .message
-      .message__info
-        %p.message__info__name
-          name
-        %p.message__info__date
-          2020/4/13(mon) 18:00:00
-      .message__text
-        test
+    =render @messages
 
-      .message__info
-        %p.message__info__name
-          name
-        %p.message__info__date
-          2020/4/13(mon) 18:00:00
-      .message__text
-        test
-
-      .message__info
-        %p.message__info__name
-          name
-        %p.message__info__date
-          2020/4/13(mon) 18:00:00
-      .message__text
-        test
-
-  .form
-    %form.new-message
+  .form      
+    = form_for [@group, @message] do |f|
       .input-box
-        %input{class: "input-box__text", placeholder: "type a message", type: "text"}
-        %label{class: "input-box__image"}
-          =icon('fas', 'image') 
-          %input{class: "input-box__image__file",type: "file",}
-      
-      %input{class: "submit-btn", type: "submit", name: "commit", value:"Send"}
-
-      
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        = f.label :image, class: 'input-box__image' do
+          = icon('fas', 'image', class: 'icon')
+          = f.file_field :image, class: 'input-box__image'
+      = f.submit 'Send', class: 'form__submit'
 
 
-        
+
+
+
